@@ -11,17 +11,19 @@
 //     - title - название позиции
 //     - count - количество в заказе
 
-function sendRequest(name, phone, address, goods, sum) {
-    let data = {client: {name, phone},order: {address, sum}, goods:[{title,count}]};
-   
+function sendRequest(name, phone, address, sum,goods) {
+  //let data  = {client: {name, phone},order: {address, sum}, goods:[{title,count }]};
+  let data  = Object({client: {name, phone},order:{address, sum}, goods:[{title,count}]});
     let countOfGoods = goods.length;
 
-    for (let i = 0; i <= countOfGoods; i += 1) {
+    for (let i = 0; i <= countOfGoods; i ++) {
+        //data.goods.push(goods[i].title);
         data.goods.push(goods[i].title);
+        data.goods.push(goods[i].count);
     }
 
     data.order.address = address;
-    data.order.sum = name + phone + address + data.goods + sum;
+    data.order.sum = name + phone + address + goods + sum;
 
     data.client = 'Иван';
 
